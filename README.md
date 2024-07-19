@@ -21,7 +21,7 @@ docker run -d -p16686:16686 -p4317:4317 -e COLLECTOR_OTLP_ENABLED=true jaegertra
 Run the gg app
 
 ```zsh
-cargo run
+cargo run -- https://github.com/ctsrc/repotools
 ```
 
 View traces at http://localhost:16686/

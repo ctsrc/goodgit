@@ -4,6 +4,7 @@ use std::fmt::{
     Formatter,
 };
 
+use clap::Parser;
 use opentelemetry::{
     global,
     global::shutdown_tracer_provider,
@@ -59,6 +60,13 @@ pub enum Error {
     Route(#[from] RouteError),
 }
 
+#[derive(Parser)]
+struct Cli {
+    /// URL of user or repo
+    #[arg(env)]
+    url: String,
+}
+
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
     let tracer_provider = init_tracer_provider().expect("Failed to initialize tracer provider.");
@@ -66,7 +74,10 @@ async fn main() -> anyhow::Result<()> {
 
     let tracer = global::tracer("goodgit-trace");
 
-    let url = "https://github.com/EmbarkStudios/tame-index.git";
+    // Command-line arguments
+    let cli = Cli::parse();
+
+    let url = cli.url;
     let url: Url = url.parse()?;
     let route = get_route(&url)?;
 
