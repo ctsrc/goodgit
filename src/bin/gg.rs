@@ -8,18 +8,18 @@ use clap::Parser;
 use opentelemetry::{
     global,
     global::shutdown_tracer_provider,
-    KeyValue,
     trace::{
         TraceContextExt,
         TraceError,
         Tracer,
     },
+    KeyValue,
 };
 use opentelemetry_otlp::WithExportConfig;
 use opentelemetry_sdk::{
-    Resource,
     runtime,
     trace::Config as SdkTraceConfig,
+    Resource,
 };
 use opentelemetry_semantic_conventions::resource::SERVICE_NAME;
 use serde::{
