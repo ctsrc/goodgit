@@ -12,6 +12,10 @@ env:
 
 jobs:
   build:
+    if: |
+      contains(github.event.commits.*.modified, 'Cargo.toml') ||
+      contains(github.event.commits.*.modified, 'Cargo.lock') ||
+      contains(github.event.commits.*.modified, 'src/')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,6 +23,10 @@ jobs:
       - name: Build
         run: cargo build --verbose --release
   test:
+    if: |
+      contains(github.event.commits.*.modified, 'Cargo.toml') ||
+      contains(github.event.commits.*.modified, 'Cargo.lock') ||
+      contains(github.event.commits.*.modified, 'src/')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,6 +34,10 @@ jobs:
       - name: Run tests
         run: cargo test --verbose --all-features
   clippy_check:
+    if: |
+      contains(github.event.commits.*.modified, 'Cargo.toml') ||
+      contains(github.event.commits.*.modified, 'Cargo.lock') ||
+      contains(github.event.commits.*.modified, 'src/')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -35,6 +47,10 @@ jobs:
       - name: Run Clippy
         run: cargo clippy --all-targets --all-features
   fmt_check:
+    if: |
+      contains(github.event.commits.*.modified, 'Cargo.toml') ||
+      contains(github.event.commits.*.modified, 'Cargo.lock') ||
+      contains(github.event.commits.*.modified, 'src/')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
