@@ -26,3 +26,36 @@ cargo run -- https://github.com/ctsrc/repotools
 
 View traces at http://localhost:16686/
 
+## Ancient history
+
+`gg` is the successor of one small pair of shell functions.
+
+While the functions were still in use, here is what they most recently looked like:
+
+```zsh
+func ghu () {
+  # TODO: More robust
+  user="$( echo "$1" | sed 's#^https://github.com/\([^/]*\)/.*#\1#' )"
+  ghudir="$HOME/src/github.com/$user"
+  [[ -d "$ghudir" ]] || mkdir -p "$ghudir"
+  cd "$ghudir"
+}
+
+func gh () {
+  ghu "$1"
+  #url="$( echo "$1" | sed 's#^https://github.com/\([^/]*\)/\([^/]*\).*#git@github.com:\1/\2.git#' )"
+  url="$( echo "$1" | sed 's#^https://github.com/\([^/]*\)/\([^/]*\).*#https://github.com/\1/\2.git#' )"
+  echo "$url"
+  ts git clone --bare "$url"
+}
+```
+
+Shell regexes were used, and then a bare clone was enqueued using task spooler.
+<https://www.freshports.org/sysutils/ts/>
+
+It was a humble beginning. It did the most important thing which was to schedule git clone.
+But it did not retrieve additional info about the repo or the owner from API.
+Nor did it support Gitlab URLs.
+
+It was time for something better. It was time for `gg` – good git.
+
