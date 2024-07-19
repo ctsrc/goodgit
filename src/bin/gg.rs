@@ -365,7 +365,7 @@ mod tests {
     #[test_case("https://GITLAB.com/qemu-project/qemu", "https://gitlab.com/qemu-project/qemu"; "Uppercase Gitlab domain")]
     #[test_case("https://gitlab.com/qemu-project/qemu/activity", "https://gitlab.com/qemu-project/qemu"; "Gitlab web UI path components in URL")]
     #[test_case("https://gitlab.com/qemu-project/qemu/-/network/master?ref_type=heads", "https://gitlab.com/qemu-project/qemu"; "Another Gitlab web UI path components in URL")]
-    fn multiplication_tests(
+    fn test_parse_and_route(
         input_url: &str,
         output_url: &str,
     ) {
