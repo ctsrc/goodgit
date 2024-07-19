@@ -29,6 +29,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@nightly
+        with:
+          components: clippy
       - name: Run Clippy
         run: cargo clippy --all-targets --all-features
   fmt_check:
@@ -36,5 +38,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@nightly
+        with:
+          components: rustfmt
       - name: Run cargo fmt check
         run: cargo fmt --all --check
