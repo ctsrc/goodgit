@@ -8,7 +8,7 @@
 Why git good when you can good git?
 
 `gg` is a program that clones repos from GitHub and simultaneously retrieves and stores data about the repo,
-the owner, and the other repos that the owner has, and more, from the GitHub API.
+the owner, and the other repos that the owner has, and more, from the GitHub API. Oh and it also works with Gitlab.
 
 ## Developing on macOS
 
