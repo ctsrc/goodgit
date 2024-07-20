@@ -1,6 +1,6 @@
 [package]
 name = "goodgit"
-description = "gg – clone repos and retrieve data about the repo from GitHub API. Supports Gitlab as well."
+description = "gg – clone repos and retrieve data about users and repos from GitHub API and Gitlab API"
 license = "ISC"
 version = "0.1.0"
 edition = "2021"
